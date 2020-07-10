@@ -1,9 +1,13 @@
+
 package com.povar;
 
+import com.povar.domain.Developer;
 import com.povar.service.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
 import java.sql.SQLException;
+
 
 
 @Data
@@ -28,31 +32,24 @@ public class Main {
 
 
 
-    private static final ProjectDeveloperService projectDeveloperService = new ProjectDeveloperService();
+    private static final DeveloperProjectService developerProjectService = new DeveloperProjectService();
     private static final DeveloperSkillService developerSkillService = new DeveloperSkillService();
-    private static final DeveloperService developerService = new DeveloperService();
-    private static final ProjectService projectService = new ProjectService();
-    private static final CustomerService customerService = new CustomerService();
-
+    private static final GenericService<Developer> genericService = new GenericService<>();
 
 
     public static void main(String[] args) throws SQLException{
 
-       //BigDecimal sumOfSalary = projectDeveloperService.findSumOfSalaryAllDevelopersOnTheProject();
+       // developerSkillService.findAllDevelopersByLanguage("java");
 
-        //List<Developer> developerList = projectDeveloperService.findAllDevelopersOnTheProject();
+       // developerSkillService.findAllDevelopersByLevelOfLanguage("Junior");
+        //developerProjectService.findSumOfSalaryAllDevelopersOnTheProject(2l);
+          //  developerProjectService.findAllDevelopersOnTheProject(2l);
+          // developerProjectService.findProjectAndAmountOfDevelopers();
 
-        //List<Developer> developers = developerSkillService.findAllDevelopersByLanguage();
+        //genericService.addNewEntity(new Developer("test", GenderOfDevelopers.MALE,18,new BigDecimal("300000")));
+       //genericService.getAllEntities(new Developer());
+       // genericService.UpdateEntity(new Developer("Igor",GenderOfDevelopers.MALE,25,new BigDecimal("65000")),3l);
 
-        //List<Developer> developerList = developerSkillService.findAllDevelopersByLevelOfLanguage();
-
-        //projectDeveloperService.FindProjectAndAmountOfDevelopers();
-
-        // developerService.addNewDeveloper();
-
-        //projectService.addNewProject();
-
-        //customerService.addNewCustomer();
 
     }
 }

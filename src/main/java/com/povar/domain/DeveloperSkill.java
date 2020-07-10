@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DeveloperSkill {
 
-    Long id;
-    Long developerId;
-    Long skillId;
+   private Long id;
+   private Long developerId;
+   private Long skillId;
 
 }

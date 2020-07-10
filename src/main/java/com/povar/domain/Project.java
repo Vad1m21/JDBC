@@ -11,11 +11,33 @@ import java.util.Date;
 
 public class Project {
 
-    Long id;
-    String name;
-    Date date;
-    String description;
-    BigDecimal cost;
+   private Long id;
+   private String name;
+   private Date date;
+   private String description;
+   private Integer cost;
+
+   public Long getId() {
+      return id;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public Date getDate() {
+      return date;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public Integer getCost() {
+      return cost;
+   }
+
+
 
 
 

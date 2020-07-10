@@ -8,8 +8,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Company {
-    Long id;
-    String name;
-    String specification;
+   private Long id;
+   private String name;
+   private String specification;
+
+   public Long getId() {
+      return id;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public String getSpecification() {
+      return specification;
+   }
 
 }

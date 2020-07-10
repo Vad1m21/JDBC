@@ -2,60 +2,35 @@ package com.povar.repository;
 
 import com.povar.Main;
 import com.povar.domain.Developer;
+import com.povar.domain.GenderOfDevelopers;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class DeveloperSkillDAO {
 
-    Connection connection;
-    Statement statement;
-    ResultSet resultSet;
-    String queryForSkillDevelopers = " SELECT * FROM my_db.developers_skills ds inner join developers d on ds.developer_id = d.developers_id inner join skills s on ds.skill_id = s.Skills_id where s.name = \"";
-    String queryForLevelOfLanguage =" SELECT * FROM my_db.developers_skills ds inner join developers d on ds.developer_id = d.developers_id inner join skills s on ds.skill_id = s.Skills_id  where s.level = \"";
+   private Connection connection;
+   private Statement statement;
+   private ResultSet resultSet;
 
-    private String createStatementForLanguage(){
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder  stringBuilder = new StringBuilder(queryForSkillDevelopers);
 
-        System.out.print("Write language in which you want find developers: ");
-        String language = scanner.nextLine();
-
-        stringBuilder.append(language);
-        stringBuilder.append("\"");
-
-        return queryForSkillDevelopers = stringBuilder.toString();
-    }
-
-    private String createStatementForLevelOfSkill(){
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder stringBuilder = new StringBuilder(queryForLevelOfLanguage);
-
-        System.out.println("Enter level of languages in which you would like to find developers:");
-        String level = scanner.nextLine();
-        stringBuilder.append(level);
-        stringBuilder.append("\" ");
-        stringBuilder.append("group by d.name");
-
-        return queryForLevelOfLanguage = stringBuilder.toString();
-    }
-
-    public List<Developer> findAllDevelopersByLanguage(){
+    public List<Developer> findAllDevelopersByLanguage(String language){
         List<Developer> developerList = new ArrayList<>();
+       String queryForSkillDevelopers = String.format(" SELECT * FROM my_db.developers_skills ds inner join developers d on ds.developer_id = d.developers_id inner join skills s on ds.skill_id = s.Skills_id where s.name = '%s' ", language);
         try{
             connection = DriverManager.getConnection(Main.getURL(),Main.getUSER(),Main.getPASSWORD());
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(createStatementForLanguage());
+            resultSet = statement.executeQuery(queryForSkillDevelopers);
             while (resultSet.next()){
                 Long id = resultSet.getLong("developer_id");
                 String name = resultSet.getString("name");
-                String gender = resultSet.getString("gender");
+                GenderOfDevelopers genderOfDevelopers =GenderOfDevelopers.valueOf(resultSet.getString("gender").toUpperCase());
                 Integer age = resultSet.getInt("age");
                 BigDecimal salary = resultSet.getBigDecimal("salary");
-                developerList.add(new Developer(id,name,gender,age,salary));
+                developerList.add(new Developer(id,name,genderOfDevelopers,age,salary));
             }
             System.out.println(developerList);
 
@@ -71,20 +46,22 @@ public class DeveloperSkillDAO {
         return developerList;
     }
 
-    public List<Developer> findAllDevelopersByLevelOfLanguage(){
+    public List<Developer> findAllDevelopersByLevelOfLanguage(String level){
         List<Developer> developers = new ArrayList<>();
+       String queryForLevelOfLanguage = String.format("SELECT * FROM my_db.developers_skills ds inner join developers d on ds.developer_id = d.developers_id inner join skills s on ds.skill_id = s.Skills_id  where s.level = '%s' group by d.developers_id",level);
         try{
             connection = DriverManager.getConnection(Main.getURL(),Main.getUSER(),Main.getPASSWORD());
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(createStatementForLevelOfSkill());
+            resultSet = statement.executeQuery(queryForLevelOfLanguage);
             while (resultSet.next()){
                 Long id = resultSet.getLong("developer_id");
                 String name = resultSet.getString("name");
-                String gender = resultSet.getString("gender");
+                GenderOfDevelopers genderOfDevelopers =GenderOfDevelopers.valueOf(resultSet.getString("gender").toUpperCase());
                 Integer age = resultSet.getInt("age");
                 BigDecimal salary = resultSet.getBigDecimal("salary");
-                developers.add(new Developer(id,name,gender,age,salary));
+                developers.add(new Developer(id,name,genderOfDevelopers,age,salary));
             }
+            System.out.println(developers);
             connection.close();
             statement.close();
             resultSet.close();
@@ -94,7 +71,8 @@ public class DeveloperSkillDAO {
         }
 
 
-        return null;
+        return developers;
     }
+
 
 }

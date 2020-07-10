@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Skill {
 
-    Long id;
-    String name;
-    String level;
+   private Long id;
+   private String name;
+   private LevelOfProgramingLanguages levelOfProgramingLanguages;
 }

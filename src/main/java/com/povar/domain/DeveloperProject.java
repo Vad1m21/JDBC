@@ -4,13 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class DeveloperProject {
 
-    Long id;
-    Long developerId;
-    Long projectId;
+   private Date date;
+   private String name;
+   private Integer amountOfDevelopers;
+
+    public DeveloperProject(  Date date, String name,Integer amountOfDevelopers) {
+        this.date = date;
+        this.name = name;
+        this.amountOfDevelopers = amountOfDevelopers;
+    }
 
 }

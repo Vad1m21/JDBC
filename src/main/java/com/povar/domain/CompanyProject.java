@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CompanyProject {
 
-    Long id;
-    Long companyId;
-    Long projectId;
+   private Long id;
+   private Long projectId;
+   private Long companyId;
 
 }

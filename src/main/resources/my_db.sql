@@ -223,7 +223,7 @@ INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('2', 'Java', 
 INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('3', 'C++', 'Senior');
 INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('4', 'C++', 'Junior');
 INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('5', 'JS', 'middle');
-INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('6', 'JS', 'Sennior');
+INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('6', 'JS', 'Senior');
 INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('7', 'Kotlin', 'middle');
 INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('8', 'C#', 'Senior');
 INSERT INTO `my_db`.`skills` (`Skill_id`, `name`, `level`) VALUES ('9', 'C#', 'Junior');
@@ -286,7 +286,7 @@ INSERT INTO `my_db`.`projects_developers` (`id`, `project_id`, `developer_id`) V
 
 
 ALTER TABLE `my_db`.`developers`
-    ADD COLUMN `salary` VARCHAR(45) NOT NULL AFTER `age`;
+    ADD COLUMN `salary` INT NOT NULL AFTER `age`;
 
 
 
