@@ -2,7 +2,7 @@ package com.povar.repository;
 
 import com.povar.Main;
 import com.povar.domain.Developer;
-import com.povar.domain.GenderOfDevelopers;
+import com.povar.domain.Gender;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -27,10 +27,10 @@ public class DeveloperSkillDAO {
             while (resultSet.next()){
                 Long id = resultSet.getLong("developer_id");
                 String name = resultSet.getString("name");
-                GenderOfDevelopers genderOfDevelopers =GenderOfDevelopers.valueOf(resultSet.getString("gender").toUpperCase());
+                Gender gender = Gender.valueOf(resultSet.getString("gender").toUpperCase());
                 Integer age = resultSet.getInt("age");
                 BigDecimal salary = resultSet.getBigDecimal("salary");
-                developerList.add(new Developer(id,name,genderOfDevelopers,age,salary));
+                developerList.add(new Developer(id,name, gender,age,salary));
             }
             System.out.println(developerList);
 
@@ -56,10 +56,10 @@ public class DeveloperSkillDAO {
             while (resultSet.next()){
                 Long id = resultSet.getLong("developer_id");
                 String name = resultSet.getString("name");
-                GenderOfDevelopers genderOfDevelopers =GenderOfDevelopers.valueOf(resultSet.getString("gender").toUpperCase());
+                Gender gender = Gender.valueOf(resultSet.getString("gender").toUpperCase());
                 Integer age = resultSet.getInt("age");
                 BigDecimal salary = resultSet.getBigDecimal("salary");
-                developers.add(new Developer(id,name,genderOfDevelopers,age,salary));
+                developers.add(new Developer(id,name, gender,age,salary));
             }
             System.out.println(developers);
             connection.close();

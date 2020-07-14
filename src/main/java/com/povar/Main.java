@@ -2,10 +2,14 @@
 package com.povar;
 
 import com.povar.domain.Developer;
+import com.povar.domain.Gender;
+import com.povar.repository.CustomerDAO;
+import com.povar.repository.DeveloperDAO;
 import com.povar.service.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 
@@ -34,22 +38,24 @@ public class Main {
 
     private static final DeveloperProjectService developerProjectService = new DeveloperProjectService();
     private static final DeveloperSkillService developerSkillService = new DeveloperSkillService();
-    private static final GenericService<Developer> genericService = new GenericService<>();
-
+    private static final CustomerService customerService = new CustomerService(new CustomerDAO());
+    private static final DeveloperService developerService = new DeveloperService(new DeveloperDAO());
 
     public static void main(String[] args) throws SQLException{
 
-       // developerSkillService.findAllDevelopersByLanguage("java");
 
-       // developerSkillService.findAllDevelopersByLevelOfLanguage("Junior");
+       //developerSkillService.findAllDevelopersByLanguage("java");
+       //developerSkillService.findAllDevelopersByLevelOfLanguage("Junior");
         //developerProjectService.findSumOfSalaryAllDevelopersOnTheProject(2l);
-          //  developerProjectService.findAllDevelopersOnTheProject(2l);
-          // developerProjectService.findProjectAndAmountOfDevelopers();
+          //developerProjectService.findAllDevelopersOnTheProject(2l);
+          //developerProjectService.findProjectAndAmountOfDevelopers();
 
-        //genericService.addNewEntity(new Developer("test", GenderOfDevelopers.MALE,18,new BigDecimal("300000")));
-       //genericService.getAllEntities(new Developer());
-       // genericService.UpdateEntity(new Developer("Igor",GenderOfDevelopers.MALE,25,new BigDecimal("65000")),3l);
+        //developerService.addNewDeveloper(new Developer("Test", Gender.MALE, 19, new BigDecimal("1000")));
+          //developerService.updateDeveloper(6l,new Developer("Test1",Gender.FEMALE,25,new BigDecimal("000")));
 
 
+       //developerService.deleteDeveloper(12l);
+
+        //System.out.println(developerService.getAllDevelopers());
     }
 }

@@ -1,24 +1,23 @@
 package com.povar.repository;
 
 import com.povar.Main;
-import com.povar.connection.ConnectionDB;
+
 import com.povar.domain.Developer;
 import com.povar.domain.DeveloperProject;
-import com.povar.domain.GenderOfDevelopers;
+import com.povar.domain.Gender;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class DeveloperProjectDAO {
 
    private Connection connection;
    private Statement statement;
    private ResultSet resultSet;
-   private ConnectionDB connectionDB;
+
 
    private final String queryForListOfProject = "select p.date, p.name, count(pd.developer_id) from projects p join developers_projects pd on p.project_id = pd.project_id group by pd.project_id";
 
@@ -38,7 +37,7 @@ public class DeveloperProjectDAO {
                 projectsDevelopers.add(new DeveloperProject(date,name,count));
             }
             System.out.println(projectsDevelopers);
-            connectionDB.closeConnection();
+            connection.close();
         }
 
         catch (SQLException exception){
@@ -83,10 +82,10 @@ public class DeveloperProjectDAO {
             while (resultSet.next()){
                 Long developerId = resultSet.getLong("developer_id");
                 String name = resultSet.getString("d.name");
-                GenderOfDevelopers genderOfDevelopers =GenderOfDevelopers.valueOf(resultSet.getString("gender").toUpperCase());
+                Gender gender = Gender.valueOf(resultSet.getString("gender").toUpperCase());
                 Integer age = resultSet.getInt("age");
                 BigDecimal salary = resultSet.getBigDecimal("salary");
-                developerList.add(new Developer(developerId,name,genderOfDevelopers,age,salary));
+                developerList.add(new Developer(developerId,name, gender,age,salary));
             }
             System.out.println(developerList);
 

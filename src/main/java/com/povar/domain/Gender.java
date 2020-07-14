@@ -1,6 +1,6 @@
 package com.povar.domain;
 
-public enum GenderOfDevelopers {
+public enum Gender {
 
     MALE,
     FEMALE
